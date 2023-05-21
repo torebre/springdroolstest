@@ -1,0 +1,13 @@
+
+
+dialect "mvel"
+
+
+rule "Get discount"
+// TODO Add rule data
+when
+
+then
+
+
+end

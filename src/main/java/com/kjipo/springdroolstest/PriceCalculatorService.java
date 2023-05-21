@@ -20,15 +20,15 @@ public class PriceCalculatorService {
 
     public Price calculatePrice(Order order) {
         KieSession kieSession = kieContainer.newKieSession();
-//        kieSession.setGlobal("order", order);
+
+        var price = new Price(0, 0);
+        kieSession.setGlobal("finalPrice", price);
         kieSession.insert(order);
         kieSession.fireAllRules();
         kieSession.dispose();
 
-        // TODO
-        return null;
+        return price;
     }
-
 
 
 }

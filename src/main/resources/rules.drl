@@ -1,13 +1,20 @@
+import com.kjipo.springdroolstest.Order;
+import com.kjipo.springdroolstest.Price;
+import com.kjipo.springdroolstest.Item;
+
+global com.kjipo.springdroolstest.Price finalPrice;
 
 
 dialect "mvel"
 
 
-rule "Get discount"
-// TODO Add rule data
+rule "Get price"
 when
+    Order($items: items())
 
+    $totalPrice: Integer() from accumulate(
+    Item($price : price) from $items,
+    sum ( $price.kroner * 100 + $price.oere));
 then
-
-
+    finalPrice.setOere($totalPrice);
 end
